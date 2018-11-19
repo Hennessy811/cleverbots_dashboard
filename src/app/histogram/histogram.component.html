@@ -1,0 +1,27 @@
+<app-header
+  [title]="title"
+  [statusList]="statusList"
+  (navigate)="updateRoute($event)"
+></app-header>
+<mat-card class="graph-wrapper" *ngIf="!isTableView">
+  <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
+  <div *ngIf="!isLoading">
+    <div class="histo-graph">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="barChartColors"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</mat-card>
+<app-grid *ngIf="isTableView && !isLoading"
+          [dataSource]="dataSource"
+          [pageSizeOptions]="pageSizeOptions"
+          [tableLength]="tableLength"
+          [displayedColumns]="displayedColumns"
+></app-grid>

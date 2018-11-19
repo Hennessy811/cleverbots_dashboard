@@ -1,0 +1,7 @@
+<mat-toolbar color="primary">{{title}}</mat-toolbar>
+<div class="nav-wrapper">
+  <button class="nav-item" mat-stroked-button color="primary" (click)="updateRoute('table')">Табличный вид</button>
+  <div *ngFor="let status of statusList">
+    <button class="nav-item" mat-flat-button color="primary" (click)="updateRoute(status)">Статус {{status}} - {{eventsDescription[status]}}</button>
+  </div>
+</div>
